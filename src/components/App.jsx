@@ -1,15 +1,20 @@
-import { useState } from 'react';
+import {useState} from 'react';
 
 import BasketList from './BasketList';
 import GoodsList from './GoodsList';
 import Search from './Search';
-
-import { goods } from '../data/goods';
+import Snack from './Snack'
+import Header from './Header';
+import Basket from './Basket'
+import {goods} from '../data/goods';
+import {Container} from "@mui/material";
 
 const App = () => {
     const [order, setOrder] = useState([]);
     const [search, setSearch] = useState('');
     const [products, setProducts] = useState(goods);
+    const [isCartOpen, setCartOpen] = useState(false);
+    const [isSnackOpen, setSnackOpen] = useState(false);
 
     const handleChange = (e) => {
         if (!e.target.value) {
@@ -58,6 +63,7 @@ const App = () => {
                 ],
             );
         }
+        setSnackOpen(true);
     };
 
     const removeFromOrder = (goodsItem) => {
@@ -65,8 +71,15 @@ const App = () => {
     };
 
     return (
-        <div className='App'>
-            <div className='container'>
+        <>
+            <Header
+                handleCart={() => setCartOpen(true)}
+                orderLen={order.length}
+            />
+
+            <Container
+                sx={{mt: '1 rem'}}
+            >
                 <Search
                     value={search}
                     onChange={handleChange}
@@ -75,12 +88,18 @@ const App = () => {
                     goods={products}
                     setOrder={addToOrder}
                 />
-                <BasketList
-                    order={order}
-                    setOrder={removeFromOrder}
-                />
-            </div>
-        </div>
+            </Container>
+            <Basket
+                order={order}
+                removeFromOrder={removeFromOrder}
+                cartOpen={isCartOpen}
+                closeCart={() => setCartOpen(false)}/>
+            <Snack
+                isOpen={isSnackOpen}
+                handleClose={()=>setSnackOpen(false)}
+            />
+        </>
+
     );
 }
 
