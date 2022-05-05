@@ -9,10 +9,13 @@ import App from './components/App';
 const theme = createTheme({
     palette: {
         primary: {
-            main: "#61dafb",
+            main: "#428fa2",
         },
         secondary:{
             main: "#d6da34"
+        },
+        text:{
+            main: "#000000"
         }
     },
 });

@@ -1,6 +1,5 @@
 import {useState} from 'react';
 
-import BasketList from './BasketList';
 import GoodsList from './GoodsList';
 import Search from './Search';
 import Snack from './Snack'
@@ -8,6 +7,7 @@ import Header from './Header';
 import Basket from './Basket'
 import {goods} from '../data/goods';
 import {Container} from "@mui/material";
+import Footer from "./Footer";
 
 const App = () => {
     const [order, setOrder] = useState([]);
@@ -98,6 +98,7 @@ const App = () => {
                 isOpen={isSnackOpen}
                 handleClose={()=>setSnackOpen(false)}
             />
+            <Footer/>
         </>
 
     );

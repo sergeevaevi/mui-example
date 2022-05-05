@@ -7,7 +7,11 @@ const GoodsItem = (props) => {
     return (
         <Grid item xs={12} md={4}>
             <Card
-                sx={{height:"100%"}}
+                sx={{height: "100%",
+                    display: "flex",
+                    flexDirection: "column",
+                    justifyContent: "space-between"
+                }}
             >
                 <CardMedia
                     component={"img"}
@@ -18,25 +22,30 @@ const GoodsItem = (props) => {
                 />
                 <CardContent>
                     <Typography
+                        gutterBottom
                         variant={"h6"}
                         component={"h5"}
                     >{name}
                     </Typography>
-                    <Typography variant={"body1"}>Цена: {price} руб.</Typography>
+
                 </CardContent>
-                <CardActions>
+                <CardActions
+                    sx={{justifyContent: "space-between"
+                    }}
+                >
                     <Button
                         variant={"text"}
-                    onClick={() =>
-                        setOrder({
-                            id: props.id,
-                            name: props.name,
-                            price: props.price,
-                        })
-                    }
-                >
-                    Купить
-                </Button>
+                        onClick={() =>
+                            setOrder({
+                                id: props.id,
+                                name: props.name,
+                                price: props.price,
+                            })
+                        }
+                    >
+                        Купить
+                    </Button>
+                    <Typography variant={"body1"}>Цена: {price} руб.</Typography>
                 </CardActions>
             </Card>
         </Grid>
